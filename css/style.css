@@ -1,0 +1,27 @@
+body {
+    margin-bottom:40px;
+}
+
+.no-rad {
+    border-radius:0;
+}
+
+.margin-top-10 {
+    margin-top:10px;
+}
+
+.margin-top-40 {
+    margin-top:40px;
+}
+
+.margin-top-20 {
+    margin-top:20px;
+}
+
+.margin-right-5 {
+    margin-right:5px;
+}
+
+.txt-center {
+    text-align:center;
+}
