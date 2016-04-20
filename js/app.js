@@ -12,8 +12,8 @@ $(document).ready(function(){
   // If access token exists set into session cookie
   if(tokenMatches && tokenMatches[1]){
     window
-      .sessionStorage
-      .setItem("instagram_access_token", tokenMatches[1]);
+    .sessionStorage
+    .setItem("instagram_access_token", tokenMatches[1]);
   }
 
   // On click get location and IG feed
@@ -25,30 +25,15 @@ $(document).ready(function(){
       if (!navigator.geolocation){
         alert("Geolocation is not supported by your browser");
         return;
-      }
+      }else{
 
-      // If lat and long postion is not cookied then get location
-      if(!window.sessionStorage.getItem("instagram_lat") && !window.sessionStorage.getItem("instagram_lng")){
-        navigator.geolocation.getCurrentPosition(success, error);
-      }
-
-      $.ajax({
-        url : "https://api.instagram.com/v1/media/search?lat="+ window.sessionStorage.getItem("instagram_lat") + "&lng=" + window.sessionStorage.getItem("instagram_lng") + "&distance=5000&access_token=" + window.sessionStorage.getItem("instagram_access_token"),
-        dataType: "jsonp",
-        type : "GET",
-
-        success : function(images){
-          $imageContainer.html("");
-
-          images.data.forEach(function(image){
-            $imageContainer.append(imageTemplate(image.images.standard_resolution));
-          });
-        },
-        error : function(){
-          alert("Could not get photos near you");
+        if(!window.sessionStorage.getItem("instagram_lat") && !window.sessionStorage.getItem("instagram_lng")){
+          navigator.geolocation.getCurrentPosition(success, error);
+        }else{
+          getImages();
         }
+      }
 
-      });
     }else{
       alert("Please login to Instagram");
     }
@@ -58,13 +43,31 @@ $(document).ready(function(){
   function success(position) {
     window.sessionStorage.setItem("instagram_lat", position.coords.latitude);
     window.sessionStorage.setItem("instagram_lng", position.coords.longitude);
+    getImages();
   }
 
   function error() {
     alert("Couldn't get your location");
   }
 
+  function getImages(){
+    $.ajax({
+      url : "https://api.instagram.com/v1/media/search?lat="+ window.sessionStorage.getItem("instagram_lat") + "&lng=" + window.sessionStorage.getItem("instagram_lng") + "&distance=5000&access_token=" + window.sessionStorage.getItem("instagram_access_token"),
+      dataType: "jsonp",
+      type : "GET",
 
+      success : function(images){
+        $imageContainer.html("");
+        images.data.forEach(function(image){
+          $imageContainer.append(imageTemplate(image.images.standard_resolution));
+        });
+      },
+      error : function(){
+        alert("Could not get photos near you");
+      }
 
+    });
+
+  }
 
 });
