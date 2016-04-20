@@ -16,21 +16,24 @@ $(document).ready(function(){
       .setItem("instagram_access_token", tokenMatches[1]);
   }
 
+  // On click get location and IG feed
   $(document).on("click", ".find-me", function(e){
     if(window.sessionStorage.getItem("instagram_access_token")){
       e.preventDefault();
 
+      // If geolocation is not supported
       if (!navigator.geolocation){
         alert("Geolocation is not supported by your browser");
         return;
       }
 
+      // If lat and long postion is not cookied then get location
       if(!window.sessionStorage.getItem("instagram_lat") && !window.sessionStorage.getItem("instagram_lng")){
         navigator.geolocation.getCurrentPosition(success, error);
       }
 
       $.ajax({
-        url : "https://api.instagram.com/v1/media/search?lat="+ window.sessionStorage.getItem("instagram_lat") + "&lng=" + window.sessionStorage.getItem("instagram_lng") + "&distance=5000&access_token=" + window.sessionStorage.getItem("instagram_access_token", accessToken),
+        url : "https://api.instagram.com/v1/media/search?lat="+ window.sessionStorage.getItem("instagram_lat") + "&lng=" + window.sessionStorage.getItem("instagram_lng") + "&distance=5000&access_token=" + window.sessionStorage.getItem("instagram_access_token"),
         dataType: "jsonp",
         type : "GET",
 
