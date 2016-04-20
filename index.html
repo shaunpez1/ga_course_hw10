@@ -11,7 +11,7 @@
 
         <script src="libraries/jquery/jquery.js"></script>
         <script src="libraries/bootstrap/bootstrap.js"></script>
-
+	      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
         <script src="js/app.js"></script>
     </head>
     <body>
@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="navbar-right">
                         <li>
-                            <a href="https://api.instagram.com/oauth/authorize/?client_id=8c82e81c99ca48deb6686e07941042dd&redirect_uri=http://localhost:3000&response_type=token" class="btn btn-primary margin-top-10">Login with Instagram</a>
+                            <a href="https://www.instagram.com/oauth/authorize/?client_id=e986cc19296942138edb9e57b15883c9&response_type=token&redirect_uri=http://shaunpez1.github.io/ga_course_hw10/&scope=public_content" class="btn btn-primary margin-top-10">Login with Instagram</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -41,50 +41,21 @@
         </nav>
 
         <div class="margin-top-40 txt-center">
-            <button class="btn-lg btn btn-default">
+            <a href="#" class="btn-lg btn btn-default find-me">
                 <span class="glyphicon glyphicon-globe margin-right-5"></span>
                 Find Photos Around Me
-            </button>
+            </a>
         </div>
 
         <div class="container-fluid margin-top-20">
             <div class="row">
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
-                <div class="col-sm-2 margin-top-20">
-                    <img src="https://scontent.cdninstagram.com/t51.2885-15/e15/11379972_1440337719617549_1248289569_n.jpg?ig_cache_key=NTYxODc3OTYzMTgyMDcwNTA2.2" class="img-responsive" />
-                </div>
+                <div id="image-container"></div>
+
+                <script id="image-template" type="text/x-handlebars-template">
+                  <div class="col-sm-2 margin-top-20">
+                      <img src="{{url}}" class="img-responsive" />
+                  </div>
+                </script>
             </div>
         </div>
 
